@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PatiDost - Evcil Hayvan Bakım Asistanı</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-area">
+            <i class="fas fa-paw"></i>
+            <span>PatiDost</span>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#" class="nav-item active" onclick="switchTab('dashboard')">
+                <i class="fas fa-home"></i> Genel Bakış
+            </a>
+            <a href="#" class="nav-item" onclick="switchTab('pets')">
+                <i class="fas fa-cat"></i> Hayvanlarım
+            </a>
+            <a href="#" class="nav-item" onclick="switchTab('health')">
+                <i class="fas fa-heartbeat"></i> Sağlık & Aşı
+            </a>
+            <a href="#" class="nav-item" onclick="switchTab('notes')">
+                <i class="fas fa-sticky-note"></i> Notlar
+            </a>
+        </nav>
+
+        <div class="user-profile">
+            <img src="https://www.svgrepo.com/show/355688/user-a-solid.svg" alt="User">
+            <div class="user-info">
+                <h4>Emr3Code</h4>
+                <p>Hayvan Sahibi</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section id="dashboard-view" class="view-section active">
+            <header class="top-header">
+                <div>
+                    <h1>Merhaba, Hoş Geldin! 👋</h1>
+                    <p>Bugün küçük dostların için neler yapmalısın?</p>
+                </div>
+                <button class="btn-primary" onclick="openModal('addPetModal')">
+                    <i class="fas fa-plus"></i> Yeni Dost Ekle
+                </button>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="icon-box blue"><i class="fas fa-paw"></i></div>
+                    <div class="stat-info">
+                        <h3 id="total-pets">0</h3>
+                        <p>Evcil Hayvan</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-box orange"><i class="fas fa-syringe"></i></div>
+                    <div class="stat-info">
+                        <h3 id="upcoming-vaccines">0</h3>
+                        <p>Yaklaşan Aşı</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-box green"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-info">
+                        <h3>Tamam</h3>
+                        <p>Bugünkü Görevler</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2>🍽️ Günlük Mama & İlaç Takibi</h2>
+            </div>
+            <div class="tasks-container" id="daily-tasks">
+                </div>
+        </section>
+
+        <section id="pets-view" class="view-section">
+            <header class="top-header">
+                <h1>Evcil Hayvanlarım</h1>
+                <button class="btn-primary" onclick="openModal('addPetModal')"><i class="fas fa-plus"></i> Ekle</button>
+            </header>
+            <div class="pets-grid" id="pets-grid">
+                </div>
+        </section>
+
+        <section id="health-view" class="view-section">
+            <header class="top-header">
+                <h1>Aşı ve Veteriner Takvimi</h1>
+            </header>
+            <div class="health-list" id="health-list">
+                </div>
+        </section>
+
+        <section id="notes-view" class="view-section">
+             <header class="top-header">
+                <h1>Notlar & Gözlemler</h1>
+                <button class="btn-secondary" onclick="addNotePrompt()">Not Ekle</button>
+            </header>
+            <div class="notes-grid" id="notes-grid">
+                </div>
+        </section>
+    </main>
+
+    <div id="addPetModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('addPetModal')">&times;</span>
+            <h2>🐾 Yeni Arkadaş Ekle</h2>
+            <form id="addPetForm">
+                <div class="form-group">
+                    <label>Adı</label>
+                    <input type="text" id="petName" required placeholder="Örn: Pamuk">
+                </div>
+                <div class="form-group">
+                    <label>Tür</label>
+                    <select id="petType">
+                        <option value="cat">Kedi 🐱</option>
+                        <option value="dog">Köpek 🐶</option>
+                        <option value="bird">Kuş 🐦</option>
+                        <option value="other">Diğer 🐹</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cins</label>
+                    <input type="text" id="petBreed" placeholder="Örn: Tekir, Golden...">
+                </div>
+                <div class="form-group">
+                    <label>Yaş / Doğum Tarihi</label>
+                    <input type="text" id="petAge" placeholder="Örn: 2 Yaşında">
+                </div>
+                <button type="submit" class="btn-primary full-width">Kaydet</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">İşlem Başarılı!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
